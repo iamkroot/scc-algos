@@ -3,18 +3,21 @@
 
 #include <vector>
 
+/**
+ * @brief Representation of a directed graph as adjacency list
+ */
 class Graph {
     std::vector<std::vector<int>> adjLst;
 public:
     explicit Graph(int numVertices);
 
-    int numVertices() const;
-    int numEdges() const;
+    [[nodiscard]] int numVertices() const;
+    [[nodiscard]] int numEdges() const;
     void addEdge(int u, int v);
 
-    const std::vector<std::vector<int>> &getAdjLst() const;
+    [[nodiscard]] const std::vector<std::vector<int>> &getAdjLst() const;
 
-    std::vector<int> getNeighbors(int vertex) const;
+    [[nodiscard]] std::vector<int> getNeighbors(int vertex) const;
 };
 
 #endif //GRAPH_H
