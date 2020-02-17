@@ -1,30 +1,31 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+
+template<typename T>
+using AdjLst = std::unordered_map<T, std::unordered_set<T>>;
 
 /**
  * @brief Representation of a directed graph as adjacency list
  */
+template<typename T>
 class Graph {
-    std::vector<std::vector<int>> adjLst;
-    std::vector<std::vector<int>> backAdjLst;
+    AdjLst<T> adjLst;
+    AdjLst<T> backAdjLst;
 public:
     Graph();
 
-    explicit Graph(int numVertices);
+    const AdjLst<T> &getAdjLst() const;
 
-    [[nodiscard]] int numVertices() const;
+    const AdjLst<T> &getBackAdjLst() const;
 
-    [[nodiscard]] int numEdges() const;
+    void addEdge(T u, T v);
 
-    void addEdge(int u, int v);
+    std::unordered_set<T> getPredecessors(T v);
 
-    [[nodiscard]] const std::vector<std::vector<int>> &getAdjLst() const;
-
-    [[nodiscard]] std::vector<int> getSuccessors(int vertex) const;
-
-    [[nodiscard]] std::vector<int> getPredecessors(int vertex) const;
+    std::unordered_set<T> getSuccessors(T v);
 };
 
 #endif //GRAPH_H
