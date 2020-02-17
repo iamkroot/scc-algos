@@ -2,10 +2,10 @@
 #define GRAPH_H
 
 #include <unordered_map>
-#include <unordered_set>
+#include "UnorderedSet.h"
 
 template<typename T>
-using AdjLst = std::unordered_map<T, std::unordered_set<T>>;
+using AdjLst = std::unordered_map<T, UnorderedSet<T>>;
 
 /**
  * @brief Representation of a directed graph as adjacency list
@@ -32,9 +32,28 @@ public:
 
     [[nodiscard]] int getNumVertices() const;
 
-    std::unordered_set<T> getPredecessors(T v);
+    UnorderedSet<T> getVertices() const;
 
-    std::unordered_set<T> getSuccessors(T v);
+    /**
+     * @brief Find all the vertices that given vertex can be reached from
+     * @param v
+     * @param predecessors The output set of vertices
+     */
+    void getPredecessors(T v, UnorderedSet<T> &predecessors);
+
+    /**
+     * @brief Find all the vertices that can be reached from the given vertex
+     * @param v
+     * @param successors The output set of vertices
+     */
+    void getSuccessors(T v, UnorderedSet<T> &successors);
+
+    /**
+     * @brief Return a new subgraph with edges only between the given set of vertices
+     * @param vertices The vertices in the subgraph
+     * @return
+     */
+    Graph<T> getInducedSubgraph(const UnorderedSet<T> &vertices);
 };
 
 #endif //GRAPH_H

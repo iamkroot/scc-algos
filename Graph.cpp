@@ -16,9 +16,9 @@ const AdjLst<T> &Graph<T>::getBackAdjLst() const {
 template<typename T>
 void Graph<T>::addVertex(T v) {
     if (not adjLst.contains(v))
-        adjLst[v] = std::unordered_set<T>();
+        adjLst[v] = UnorderedSet<T>();
     if (not backAdjLst.contains(v))
-        backAdjLst[v] = std::unordered_set<T>();
+        backAdjLst[v] = UnorderedSet<T>();
 }
 
 template<typename T>
@@ -41,26 +41,51 @@ int Graph<T>::getNumVertices() const {
 }
 
 template<typename T>
-std::unordered_set<T> Graph<T>::getPredecessors(T v) {
-    std::unordered_set<T> predecessors = backAdjLst[v];
+void Graph<T>::getPredecessors(T v, UnorderedSet<T> &predecessors) {
+    if (predecessors.contains(v))
+        return;
+    predecessors.insert(v);
     for (const auto &predecessor : backAdjLst[v]) {
-        predecessors.merge(getPredecessors(predecessor));
+        getPredecessors(predecessor, predecessors);
     }
-    return predecessors;
 }
 
 template<typename T>
-std::unordered_set<T> Graph<T>::getSuccessors(T v) {
-    std::unordered_set<T> successors = adjLst[v];
+void Graph<T>::getSuccessors(T v, UnorderedSet<T> &successors) {
+    if (successors.contains(v))
+        return;
+    successors.insert(v);
     for (const auto &successor : adjLst[v]) {
-        successors.merge(getPredecessors(successor));
+        getPredecessors(successor, successors);
     }
-    return successors;
 }
 
 template<typename T>
 Graph<T>::Graph(T v) {
     addVertex(v);
+}
+
+template<typename T>
+UnorderedSet<T> Graph<T>::getVertices() const {
+    UnorderedSet<T> verts;
+    for (const auto &items : adjLst) {
+        verts.insert(items.first);
+    }
+    return verts;
+}
+
+template<typename T>
+Graph<T> Graph<T>::getInducedSubgraph(const UnorderedSet<T> &vertices) {
+    Graph<T> subgraph;
+    for (const auto &vertex : vertices) {
+        subgraph.addVertex(vertex);
+        for (const auto &v : adjLst[vertex]) {
+            if (vertices.contains(v)) {
+                subgraph.addEdge(vertex, v);
+            }
+        }
+    }
+    return subgraph;
 }
 
 template
