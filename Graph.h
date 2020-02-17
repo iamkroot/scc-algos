@@ -12,16 +12,25 @@ using AdjLst = std::unordered_map<T, std::unordered_set<T>>;
  */
 template<typename T>
 class Graph {
+    int numEdges{0};
     AdjLst<T> adjLst;
     AdjLst<T> backAdjLst;
 public:
     Graph();
 
+    explicit Graph(T v);
+
     const AdjLst<T> &getAdjLst() const;
 
     const AdjLst<T> &getBackAdjLst() const;
 
+    void addVertex(T v);
+
     void addEdge(T u, T v);
+
+    [[nodiscard]] int getNumEdges() const;
+
+    [[nodiscard]] int getNumVertices() const;
 
     std::unordered_set<T> getPredecessors(T v);
 
