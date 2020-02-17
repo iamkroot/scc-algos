@@ -1,5 +1,7 @@
 #include "Graph.h"
 
+Graph::Graph() = default;
+
 Graph::Graph(int numVertices) {
     adjLst.resize(numVertices);
 }
@@ -21,9 +23,19 @@ int Graph::numEdges() const {
 }
 
 void Graph::addEdge(int u, int v) {
+    auto max = std::max(u, v);
+    if (adjLst.size() < max) {
+        adjLst.resize(max);
+        backAdjLst.resize(max);
+    }
     adjLst[u].push_back(v);
+    backAdjLst[v].push_back(u);
 }
 
-std::vector<int> Graph::getNeighbors(int vertex) const {
+std::vector<int> Graph::getSuccessors(int vertex) const {
     return adjLst[vertex];
+}
+
+std::vector<int> Graph::getPredecessors(int vertex) const {
+    return backAdjLst[vertex];
 }
