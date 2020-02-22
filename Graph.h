@@ -2,6 +2,7 @@
 #define GRAPH_H
 
 #include <unordered_map>
+#include<stack>
 #include "UnorderedSet.h"
 
 template<typename T>
@@ -54,6 +55,10 @@ public:
      * @return
      */
     Graph<T> getInducedSubgraph(const UnorderedSet<T> &vertices);
+
+    void fillOrder(T v, std::unordered_map<T,bool> &visited, std::stack<T> &Stack);
+
+    void DFSUtil(T v, std::unordered_map<T,bool> &visited, Graph<T> &comp);
 };
 
 #endif //GRAPH_H

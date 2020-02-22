@@ -1,13 +1,16 @@
 #include <iostream>
 #include "Graph.h"
-#include "DCSCFinder.cpp"
+// #include "DCSCFinder.cpp"
+#include "KosarajuFinder.h"
 
 int main() {
-    auto g = Graph<char>();
-    g.addVertex('f');
-    g.addVertex('a');
-    g.addVertex('b');
-    for (const auto &items : getSCC(g)) {
+    auto g = Graph<int>();
+    g.addEdge(1, 0); 
+    g.addEdge(0, 2); 
+    g.addEdge(2, 1); 
+    g.addEdge(0, 3); 
+    g.addEdge(3, 4); 
+    for (const auto &items : getKSCC(g)) {
         std::cout << items.getNumVertices() << std::endl;
     }
 
