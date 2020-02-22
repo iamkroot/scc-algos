@@ -8,7 +8,6 @@ std::vector<Graph<T>> getKSCC(Graph<T> g) {
 
     std::stack<T> Stack; 
     UnorderedSet<T> verts = g.getVertices();
-    // Mark all the vertices as not visited (For first DFS) 
     std::unordered_map<T,bool> visited;
 
     for(const auto &items : verts) 
@@ -27,11 +26,9 @@ std::vector<Graph<T>> getKSCC(Graph<T> g) {
     // Now process all vertices in order defined by Stack 
     while (Stack.empty() == false) 
     { 
-        // Pop a vertex from stack 
         int v = Stack.top(); 
         Stack.pop(); 
-  
-        // Print Strongly connected component of the popped vertex 
+ 
         if (visited[v] == false) 
         { 
             Graph<T> comp;
