@@ -11,12 +11,12 @@ std::vector<Graph<T>> getKSCC(Graph<T> g) {
     std::unordered_map<T,bool> visited;
 
     for(const auto &items : verts) 
-        visited.insert(items, false); 
+        visited.insert({items, false}); 
   
     // Fill vertices in stack according to their finishing times 
     for(const auto &items : verts) 
         if(visited[items] == false) 
-            fillOrder(items, visited, Stack); 
+            g.fillOrder(items, visited, Stack); 
   
   
     // Mark all the vertices as not visited (For second DFS) 

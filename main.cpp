@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Graph.h"
 // #include "DCSCFinder.cpp"
-#include "KosarajuFinder.h"
+#include "KosarajuFinder.cpp"
 
 int main() {
     auto g = Graph<int>();
