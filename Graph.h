@@ -56,9 +56,23 @@ public:
      */
     Graph<T> getInducedSubgraph(const UnorderedSet<T> &vertices);
 
-    void fillOrder(T v, std::unordered_map<T,bool> &visited, std::stack<T> &Stack);
+    /**
+     * @brief Fill the stack according to finishing times
+     * @param v Vertices in the graph
+     * @param visited The map containing status of visit of a vertex
+     * @param Stack The stack containing vertices in order of finishing times
+     * @return
+     */
+    void fillFirst(T v, std::unordered_map<T,bool> &visited, std::stack<T> &Stack);
 
-    void DFSUtil(T v, std::unordered_map<T,bool> &visited, Graph<T> &comp);
+    /**
+     * @brief Run DFS for the transpose of the graph
+     * @param v Vertices in the graph
+     * @param visited The map containing status of visit of a vertex        
+     * @param comp The graph for a connected component
+     * @return
+     */
+    void DFS(T v, std::unordered_map<T,bool> &visited, Graph<T> &comp);
 };
 
 #endif //GRAPH_H
