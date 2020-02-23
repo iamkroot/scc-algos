@@ -20,24 +20,20 @@ namespace Kosaraju {
         for (const auto &vertex : verts)
             visited.insert({vertex, false});
 
-        // Fill vertices in stack according to their finishing times
         for (const auto &items : verts)
             if (visited[items] == false)
-                g.fillOrder(items, visited, stack);
+                g.fillFinish(items, visited, stack);
 
-
-        // Mark all the vertices as not visited (For second DFS)
         for (const auto &items : verts)
             visited[items] = false;
 
-        // Now process all vertices in order defined by stack
         while (!stack.empty()) {
             int v = stack.top();
             stack.pop();
 
             if (visited[v] == false) {
                 Graph<T> comp;
-                g.DFSUtil(v, visited, comp);
+                g.DFS(v, visited, comp);
                 scc.push_back(comp);
             }
         }

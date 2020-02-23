@@ -88,29 +88,26 @@ Graph<T> Graph<T>::getInducedSubgraph(const UnorderedSet<T> &vertices) {
     return subgraph;
 }
 template<typename T>
-void Graph<T>::fillOrder(T v, std::unordered_map<T,bool> &visited, std::stack<T> &Stack) 
+void Graph<T>::fillFirst(T v, std::unordered_map<T,bool> &visited, std::stack<T> &Stack) 
 { 
     visited[v] = true; 
-  
-    
+      
     for(const auto &item : adjLst[v]) 
         if(!visited[item]) 
-            fillOrder(item, visited, Stack);
+            fillFirst(item, visited, Stack);
  
     Stack.push(v); 
 } 
 
 template<typename T>
-void Graph<T>::DFSUtil(T v, std::unordered_map<T,bool> &visited, Graph<T> &comp) 
-{ 
-    // Mark the current node as visited and print it 
+void Graph<T>::DFS(T v, std::unordered_map<T,bool> &visited, Graph<T> &comp) 
+{  
     visited[v] = true; 
     comp.addVertex(v); 
-  
-    // Recur for all the vertices adjacent to this vertex 
+   
     for (const auto &item : backAdjLst[v]) 
         if (!visited[item]) 
-            DFSUtil(item, visited, comp); 
+            DFS(item, visited, comp); 
 } 
 template
 class Graph<int>;
