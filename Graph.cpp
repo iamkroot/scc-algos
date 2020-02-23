@@ -56,7 +56,7 @@ void Graph<T>::getSuccessors(T v, UnorderedSet<T> &successors) {
         return;
     successors.insert(v);
     for (const auto &successor : adjLst[v]) {
-        getPredecessors(successor, successors);
+        getSuccessors(successor, successors);
     }
 }
 
