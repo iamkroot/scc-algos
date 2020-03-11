@@ -39,14 +39,16 @@ void compareAlgos(const Graph<int> &g) {
 void writeSCC(const std::vector<UnorderedSet<int>> &scc) {
     std::cout << "Number of components: " << scc.size() << std::endl;
     int i = 1;
+    unsigned long max_size = 0;
     for (const auto &comp : scc) {
-        std::cout << "Component " << i << ":";
         for (const auto &vert: comp) {
-            std::cout << " " << vert;
+            std::cout << vert << " ";
         }
         std::cout << std::endl;
         i++;
+        max_size = std::max(max_size, comp.size());
     }
+    std::cout << "Largest component has " << max_size << "vertices" << std::endl;
 }
 
 int main(int argc, char *argv[]) {
