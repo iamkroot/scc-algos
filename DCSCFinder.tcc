@@ -10,11 +10,13 @@ namespace DCSC {
      * @param g
      */
     template<typename T>
-    std::vector<Graph<T>> getSCC(Graph<T> g) {
-        std::vector<Graph<T>> scc;
+    std::vector<UnorderedSet<T>> getSCC(Graph<T> g) {
+        std::vector<UnorderedSet<T>> scc;
         if (g.getNumEdges() == 0) {
             for (const auto &vertex : g.getVertices()) {
-                scc.emplace_back(vertex);  // create single vertex graph using
+                UnorderedSet<T> comp;
+                comp.insert(vertex);
+                scc.push_back(comp);  // create single vertex graph using
             }
             return scc;
         }
@@ -25,8 +27,7 @@ namespace DCSC {
         g.getSuccessors(v, succ);
 
         auto compVerts = pred & succ;  // the vertices in component of selected vertex
-        Graph<T> comp = g.getInducedSubgraph(compVerts);  // the graph for pred ∩ succ
-        scc.push_back(comp);
+        scc.push_back(compVerts);
 
         // recurse on the other parts
         auto remPred = getSCC(g.getInducedSubgraph(pred - compVerts));  // G \ pred

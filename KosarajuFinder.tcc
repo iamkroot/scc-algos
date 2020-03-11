@@ -10,8 +10,8 @@ namespace Kosaraju {
      * @param g
      */
     template<typename T>
-    std::vector<Graph<T>> getSCC(Graph<T> g) {
-        std::vector<Graph<T>> scc;
+    std::vector<UnorderedSet<T>> getSCC(Graph<T> g) {
+        std::vector<UnorderedSet<T>> scc;
 
         std::stack<T> stack;
         UnorderedSet<T> verts = g.getVertices();
@@ -36,7 +36,7 @@ namespace Kosaraju {
             stack.pop();
 
             if (visited[v] == false) {
-                Graph<T> comp;
+                UnorderedSet<T> comp;
                 g.DFSUtil(v, visited, comp);
                 scc.push_back(comp);
             }

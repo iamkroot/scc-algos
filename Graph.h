@@ -19,8 +19,6 @@ class Graph {
 public:
     Graph();
 
-    explicit Graph(T v);
-
     const AdjLst<T> &getAdjLst() const;
 
     const AdjLst<T> &getBackAdjLst() const;
@@ -56,9 +54,9 @@ public:
      */
     Graph<T> getInducedSubgraph(const UnorderedSet<T> &vertices);
 
-    void fillOrder(T v, std::unordered_map<T,bool> &visited, std::stack<T> &Stack);
+    void fillOrder(T v, std::unordered_map<T,bool> &visited, std::stack<T> &stack);
 
-    void DFSUtil(T v, std::unordered_map<T,bool> &visited, Graph<T> &comp);
+    void DFSUtil(T v, std::unordered_map<T,bool> &visited, UnorderedSet<T> &comp);
 };
 
 #endif //GRAPH_H

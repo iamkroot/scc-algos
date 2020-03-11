@@ -61,11 +61,6 @@ void Graph<T>::getSuccessors(T v, UnorderedSet<T> &successors) {
 }
 
 template<typename T>
-Graph<T>::Graph(T v) {
-    addVertex(v);
-}
-
-template<typename T>
 UnorderedSet<T> Graph<T>::getVertices() const {
     UnorderedSet<T> verts;
     for (const auto &items : adjLst) {
@@ -87,31 +82,29 @@ Graph<T> Graph<T>::getInducedSubgraph(const UnorderedSet<T> &vertices) {
     }
     return subgraph;
 }
-template<typename T>
-void Graph<T>::fillOrder(T v, std::unordered_map<T,bool> &visited, std::stack<T> &Stack) 
-{ 
-    visited[v] = true; 
-  
-    
-    for(const auto &item : adjLst[v]) 
-        if(!visited[item]) 
-            fillOrder(item, visited, Stack);
- 
-    Stack.push(v); 
-} 
 
 template<typename T>
-void Graph<T>::DFSUtil(T v, std::unordered_map<T,bool> &visited, Graph<T> &comp) 
-{ 
-    // Mark the current node as visited and print it 
-    visited[v] = true; 
-    comp.addVertex(v); 
-  
-    // Recur for all the vertices adjacent to this vertex 
-    for (const auto &item : backAdjLst[v]) 
-        if (!visited[item]) 
-            DFSUtil(item, visited, comp); 
-} 
+void Graph<T>::fillOrder(T v, std::unordered_map<T, bool> &visited, std::stack<T> &stack) {
+    visited[v] = true;
+    for (const auto &item : adjLst[v])
+        if (!visited[item])
+            fillOrder(item, visited, stack);
+
+    stack.push(v);
+}
+
+template<typename T>
+void Graph<T>::DFSUtil(T v, std::unordered_map<T, bool> &visited, UnorderedSet<T> &comp) {
+    // Mark the current node as visited and print it
+    visited[v] = true;
+    comp.insert(v);
+
+    // Recur for all the vertices adjacent to this vertex
+    for (const auto &item : backAdjLst[v])
+        if (!visited[item])
+            DFSUtil(item, visited, comp);
+}
+
 template
 class Graph<int>;
 

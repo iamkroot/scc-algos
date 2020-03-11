@@ -36,12 +36,12 @@ void compareAlgos(const Graph<int> &g) {
     std::cout << "Runtime ratio: " << (double) DCSCTime / KosarajuTime << std::endl;
 }
 
-void writeSCC(const std::vector<Graph<int>> &scc) {
+void writeSCC(const std::vector<UnorderedSet<int>> &scc) {
     std::cout << "Number of components: " << scc.size() << std::endl;
     int i = 1;
     for (const auto &comp : scc) {
         std::cout << "Component " << i << ":";
-        for (const auto &vert: comp.getVertices()) {
+        for (const auto &vert: comp) {
             std::cout << " " << vert;
         }
         std::cout << std::endl;
