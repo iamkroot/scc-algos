@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <style>
+      html, body {
+        background-color: #f8f8f8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Graph Vizualization</h1>
+    <select id="dataset"></select>
+    <div id="container"></div>
+
+    <script src="./ElGrapho.js"></script>
+    <script src="./graph_data.js"></script>
+    <script>
+    const selectElement = document.querySelector('#dataset');
+    const containerElement = document.querySelector('#container');
+    for(let model of models) {
+      const name = model.name;
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.innerHTML = name;
+      selectElement.appendChild(opt)
+      const graphDiv = document.createElement("div");
+      graphDiv.id = name;
+      graphDiv.hidden = true;
+      graphDiv.classList = "graph";
+      containerElement.appendChild(graphDiv);
+      delete model.name;
+      let graph = new ElGrapho({
+        container: graphDiv,
+        model: ElGrapho.layouts.ForceDirected(model),
+        width: 500,
+        height: 500,
+        arrows: true,
+        nodeOutline: false,
+        debug: true
+      });
+      selectElement.addEventListener("change", (event) => {
+        const graphDiv = document.querySelector("#" + event.target.value);
+        let old = document.querySelector("div.graph:not([hidden])");
+        if (old !== null)
+          old.hidden = true;
+        graphDiv.hidden = false;
+      })
+      containerElement.firstElementChild.hidden = false;
+    }
+    </script>
+  </body>
+</html>
