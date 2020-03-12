@@ -7,13 +7,21 @@
       html, body {
         background-color: #f8f8f8;
       }
+      select {
+        padding: 2px 5px;
+        margin-bottom: 1rem;
+      }
+
     </style>
   </head>
   <body>
+    <center>
     <h1>Graph Vizualization</h1>
+    <label for="dataset">Select dataset:</label>
     <select id="dataset"></select>
+    <br/>
     <div id="container"></div>
-
+    </center>
     <script src="./ElGrapho.js"></script>
     <script src="./graph_data.js"></script>
     <script>
@@ -38,15 +46,20 @@
         height: 500,
         arrows: true,
         nodeOutline: false,
-        debug: true
+        nodeSize: 0.75,
+        edgeSize: 0.5,
       });
+      graph.tooltipTemplate = function(index, el) {
+        const node = graph.model.nodes[index];
+        el.innerHTML = `Node: ${node.label} Component: ${node.group}`;
+      };
       selectElement.addEventListener("change", (event) => {
         const graphDiv = document.querySelector("#" + event.target.value);
         let old = document.querySelector("div.graph:not([hidden])");
         if (old !== null)
           old.hidden = true;
         graphDiv.hidden = false;
-      })
+      });
       containerElement.firstElementChild.hidden = false;
     }
     </script>
