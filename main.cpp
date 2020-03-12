@@ -5,6 +5,11 @@
 #include "KosarajuFinder.tcc"
 #include "Utils.h"
 
+/**
+ * @brief Read graph from file
+ * @param path File path
+ * @return Graph class 
+ */
 Graph<int> readGraph(const std::string &path) {
     std::vector<std::pair<int, int>> edgeList;
     try {
@@ -22,6 +27,10 @@ Graph<int> readGraph(const std::string &path) {
     return g;
 }
 
+/**
+ * @brief Compare Divide and Conquer Algo with Kosaraju Algo
+ * @param g Graph to run both the algorithms on
+ */
 void compareAlgos(const Graph<int> &g) {
     Stopwatch<> stopwatch;
     auto KosarajuSCC = Kosaraju::getSCC(g);
@@ -36,6 +45,10 @@ void compareAlgos(const Graph<int> &g) {
     std::cout << "Runtime ratio: " << (double) DCSCTime / KosarajuTime << std::endl;
 }
 
+/**
+ * @brief Output number of Strongly Connected Components
+ * @param scc All the Strongly Connected Components
+ */
 void writeSCC(const std::vector<UnorderedSet<int>> &scc) {
     std::cout << "Number of components: " << scc.size() << std::endl;
     int i = 1;

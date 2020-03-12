@@ -4,3 +4,6 @@ cmake-build-release
 datasets
 *.csv
 results
+build
+html
+latex

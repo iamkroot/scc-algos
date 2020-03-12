@@ -4,6 +4,11 @@
 #include <chrono>
 #include <vector>
 
+/**
+ * @brief Read graph information from a csv file
+ * @param path Path to file containing graph info
+ * @return Edge List
+ */
 std::vector<std::pair<int, int>> readEdgeList(const std::string &path);
 
 template<typename TimeT = std::chrono::microseconds,
