@@ -17,7 +17,7 @@ Vizualization Library - [ElGrapho](https://www.elgrapho.com/)
 
 * Vizualization of [WikiVote](https://snap.stanford.edu/data/wiki-Vote.html) data with strongly connected components - [Here](./viz/graph_viz.html)
 
-##Group Details
+## Group Details
 
 1. 2017A7PS0184H Krut Patel
 2. 2017A7PS0130H Niral Khambhati
