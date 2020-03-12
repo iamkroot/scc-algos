@@ -5,5 +5,3 @@ datasets
 *.csv
 results
 build
-html
-latex

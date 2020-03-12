@@ -15,7 +15,7 @@ NOTE:   V-number of vertices &
 
 Vizualization Library - [ElGrapho](https://www.elgrapho.com/)
 
-* Vizualization Example - [Here](./viz/graph_viz.html)
+* Vizualization of [WikiVote](https://snap.stanford.edu/data/wiki-Vote.html) data with strongly connected components - [Here](./viz/graph_viz.html)
 
 ##Group Details
 
