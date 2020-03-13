@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['design_20and_20analysis_20of_20algorithms_20_2d_20assignment_201_45',['Design and Analysis of Algorithms - Assignment 1',['../index.html',1,'']]]
+  ['finding_20strongly_20connected_20components_20in_20a_20digraph_51',['Finding Strongly Connected Components in a DiGraph',['../index.html',1,'']]]
 ];

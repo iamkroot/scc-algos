@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['start_18',['start',['../classStopwatch.html#a9e2f8235b8ff4047283dab800d3099fa',1,'Stopwatch']]],
-  ['stop_19',['stop',['../classStopwatch.html#a9a935a68524f7768c990eab9090e96ba',1,'Stopwatch']]],
-  ['stopwatch_20',['Stopwatch',['../classStopwatch.html',1,'Stopwatch&lt; TimeT, ClockT, DurationT &gt;'],['../classStopwatch.html#a2b9e7c3f1f0156a19186d894b661896a',1,'Stopwatch::Stopwatch()']]]
+  ['operator_26_18',['operator&amp;',['../classUnorderedSet.html#a3cb1f9749d03a2e6c2a9bfcdd90259d2',1,'UnorderedSet']]],
+  ['operator_2d_19',['operator-',['../classUnorderedSet.html#abd56a6a11791213eb37158bb328fa966',1,'UnorderedSet']]],
+  ['operator_7c_20',['operator|',['../classUnorderedSet.html#ab912a78d65bae3590767c0ae143ef94c',1,'UnorderedSet']]]
 ];

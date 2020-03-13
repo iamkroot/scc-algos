@@ -1,3 +1,7 @@
+/**
+ * @file DCSCFinder.tcc
+ * @brief Implementation of Divide-and-Conquer Strongly Connected (DCSC) Algorithm for finding strongly connected compenents in a directed graph
+ */
 #ifndef DCSCFINDER_TCC
 #define DCSCFINDER_TCC
 
@@ -7,7 +11,7 @@
 namespace DCSC {
     /**
      * @brief Implements a Divide and Conquer strategy to find the strongly connected components
-     * @param g
+     * @param g Graph to find scc from
      */
     template<typename T>
     std::vector<UnorderedSet<T>> getSCC(Graph<T> g) {

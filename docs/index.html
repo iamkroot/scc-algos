@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DAA Assignment-1: Design and Analysis of Algorithms - Assignment 1</title>
+<title>DAA Assignment-1: Finding Strongly Connected Components in a DiGraph</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,25 +63,66 @@ $(function() {
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Design and Analysis of Algorithms - Assignment 1 </div>  </div>
+<div class="title">Finding Strongly Connected Components in a DiGraph </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>Implementation and visualization of algorithms to find Strongly Connected Components in a Directed <a class="el" href="classGraph.html" title="Representation of a directed graph as adjacency list.">Graph</a>.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Algorithms Implemented</h1>
 <ul>
-<li><a href="https://www.researchgate.net/publication/229023670_A_divide-and-conquer_algorithm_for_identifying_strongly_connected_components">Divide-and-Conquer Algorithm</a> - a <em>O(ElogV)</em> algorithm to find the strongly connected components of a directed graph.</li>
-<li><a href="https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm">Kosaraju's Algorithm (Classical)</a> - a <em>O(V)</em> algorithm to find the strongly connected components of a directed graph.</li>
+<li><a href="https://www.researchgate.net/publication/229023670_A_divide-and-conquer_algorithm_for_identifying_strongly_connected_components">Divide-and-Conquer Algorithm</a> with runtime <em>O(ElogV)</em></li>
+<li><a href="https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm">Kosaraju's Algorithm (Classical)</a> - with runtime <em>Θ(V + E)</em></li>
 </ul>
-<p>NOTE: V-number of vertices &amp; E-number of edges</p>
+<p>where V = number of vertices, E = number of edges in the given graph</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Vizualization</h1>
 <p>Vizualization Library - <a href="https://www.elgrapho.com/">ElGrapho</a></p>
-<ul>
-<li>Vizualization Example - <a href="../viz/graph_viz.html">Here</a></li>
-</ul>
+<p><a href="../viz/graph_viz.html">Here</a> is the generated html page with some preloaded datasets. (Download the entire <a href="../viz/"><code>viz</code></a> folder)</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
-Group Details</h1>
+Results</h1>
+<p>The datasets for large graphs have been taken from <a href="https://snap.stanford.edu/data/">this</a> page.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">dataset </th><th class="markdownTableHeadNone">num_verts </th><th class="markdownTableHeadNone">num_edges </th><th class="markdownTableHeadNone">num_comps </th><th class="markdownTableHeadNone">dcsc (μs) </th><th class="markdownTableHeadNone">kosaraju (μs) </th><th class="markdownTableHeadNone">ratio  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">bitcoin </td><td class="markdownTableBodyNone">5882 </td><td class="markdownTableBodyNone">35593 </td><td class="markdownTableBodyNone">1145 </td><td class="markdownTableBodyNone">1363632 </td><td class="markdownTableBodyNone">64964 </td><td class="markdownTableBodyNone">20.9906  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">facebook </td><td class="markdownTableBodyNone">4039 </td><td class="markdownTableBodyNone">88234 </td><td class="markdownTableBodyNone">4039 </td><td class="markdownTableBodyNone">1991472 </td><td class="markdownTableBodyNone">52247 </td><td class="markdownTableBodyNone">38.1165  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">wiki-votes </td><td class="markdownTableBodyNone">7115 </td><td class="markdownTableBodyNone">103689 </td><td class="markdownTableBodyNone">5816 </td><td class="markdownTableBodyNone">17753306 </td><td class="markdownTableBodyNone">74924 </td><td class="markdownTableBodyNone">236.951  </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Running</h1>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Main</h2>
+<p>The project uses a cmake build system and targets C++ 20. After compilation using cmake, the executable can be run from the terminal: </p><div class="fragment"><div class="line">Usage:</div>
+<div class="line">scc_algos [compare|getSCC] DATASET_PATH [DATASET_PATH...]</div>
+<div class="line"> </div>
+<div class="line">compare  For each graph, measure the runtimes of Kosaraju and Divide and Conquer algorithms</div>
+<div class="line">getSCC   For each graph, print the vertices Strongly Connected Components to stdout</div>
+<div class="line"> </div>
+<div class="line">The DATASET_PATH should be a path (not containing spaces) to a CSV file with edges of the graph in the form: src,dest</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
+Batch</h2>
+<p>The <a href="./run.py"><code>run.py</code></a> script automates this task for when you have lots of datasets and would like to run the algorithms for each of them. </p><div class="fragment"><div class="line">Usage:</div>
+<div class="line">  -e EXEC_PATH,   --exec-path EXEC_PATH</div>
+<div class="line">                        Path to compiled executable scc_algos</div>
+<div class="line">  -d DATASET_DIR, --dataset-dir DATASET_DIR</div>
+<div class="line">                        Path to directory which contains input graph CSVs</div>
+<div class="line">  -r RESULTS_DIR, --results-dir RESULTS_DIR</div>
+<div class="line">                        Path to folder where results should be stored</div>
+</div><!-- fragment --><p>This will also create a <code>results.csv</code> similar to the table in <a href="#results">Results</a> section.</p>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Viz</h2>
+<p><a href="./viz/viz.py"><code>viz.py</code></a> script has been made to format the graph data as required by ElGrapho. </p><div class="fragment"><div class="line">Usage:</div>
+<div class="line">-d DATASET_DIR, --dataset-dir DATASET_DIR</div>
+<div class="line">                      Path to directory which contains input graph CSVs</div>
+<div class="line">-r RESULTS_DIR, --results-dir RESULTS_DIR</div>
+<div class="line">                      Path to folder where graph SCCs are stored</div>
+<div class="line">-o OUTPUT_JS, --output-js OUTPUT_JS</div>
+<div class="line">                      Path to JS file which will contain the graph models (default: graph_data.js)</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
+Authors</h1>
 <ol type="1">
 <li>2017A7PS0184H Krut Patel</li>
 <li>2017A7PS0130H Niral Khambhati</li>

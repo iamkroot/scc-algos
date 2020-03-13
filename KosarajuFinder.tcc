@@ -1,3 +1,7 @@
+/**
+ * @file KosarajuFinder.tcc
+ * @brief Implementation of Kosaraju Algorithm for finding strongly connected compenents in a directed graph
+ */
 #ifndef KOSARAJUFINDER_TCC
 #define KOSARAJUFINDER_TCC
 
@@ -7,7 +11,7 @@
 namespace Kosaraju {
     /**
      * @brief Implements Kosaraju's algorithm to find the strongly connected components
-     * @param g
+     * @param g Graph to find scc from
      */
     template<typename T>
     std::vector<UnorderedSet<T>> getSCC(Graph<T> g) {
