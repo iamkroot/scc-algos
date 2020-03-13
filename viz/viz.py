@@ -47,12 +47,33 @@ def write_elgrapho(dataset_dir: Path, results_dir: Path, out_file: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset-dir", type=Path, required=True)
-    parser.add_argument("--results-dir", type=Path, required=True)
-    parser.add_argument("--elgrapho-js-path", type=Path, required=True)
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument(
+        "-d",
+        "--dataset-dir",
+        type=Path,
+        required=True,
+        help="Path to directory which contains input graph CSVs",
+    )
+    parser.add_argument(
+        "-r",
+        "--results-dir",
+        type=Path,
+        required=True,
+        help="Path to folder where graph SCCs are stored",
+    )
+    parser.add_argument(
+        "-o",
+        "--output-js",
+        default="graph_data.js",
+        type=Path,
+        required=True,
+        help="Path to JS file which will contain the graph models",
+    )
     args = parser.parse_args()
-    write_elgrapho(args.dataset_path, args.results_dir, args.elgrapho_js_path)
+    write_elgrapho(args.dataset_path, args.results_dir, args.output_js)
 
 
 if __name__ == '__main__':

@@ -43,19 +43,25 @@ def run(exec_path: Path, dataset_dir: Path, results_dir: Path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "-e", "--exec-path", type=Path, help="Path to compiled executable scc_algos"
+        "-e",
+        "--exec-path",
+        type=Path,
+        help="Path to compiled executable scc_algos",
+        required=True,
     )
     parser.add_argument(
         "-d",
         "--dataset-dir",
         type=Path,
         help="Path to directory which contains input graph CSVs",
+        required=True,
     )
     parser.add_argument(
         "-r",
         "--results-dir",
         type=Path,
         help="Path to folder where results should be stored",
+        required=True,
     )
     args = parser.parse_args()
     run(args.exec_path, args.dataset_dir, args.results_dir)
