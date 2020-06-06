@@ -7,6 +7,7 @@
 
 #include "Graph.h"
 #include <vector>
+#include <random>
 
 namespace DCSC {
     /**
@@ -24,7 +25,9 @@ namespace DCSC {
             }
             return scc;
         }
-        auto v = g.getAdjLst().begin()->first;  // select an arbitrary vertex (adjLst is unordered)
+        auto vi = g.getAdjLst().begin();
+        std::advance(vi, std::random_device()() % g.getNumVertices());
+        auto v = vi->first;  // select an arbitrary vertex
 
         UnorderedSet<T> pred, succ;
         g.getPredecessors(v, pred);
