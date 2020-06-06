@@ -10,9 +10,9 @@ Implementation and visualization of algorithms to find Strongly Connected Compon
 
 where V = number of vertices, E = number of edges in the given graph
 
-## Vizualization
+## Visualization
 
-Vizualization Library - [ElGrapho](https://www.elgrapho.com/)
+Visualization Library - [ElGrapho](https://www.elgrapho.com/)
 
 [Here](./viz/graph_viz.html) is the generated html page with some preloaded datasets. (Download the entire [`viz`](./viz/) folder)
 
